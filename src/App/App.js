@@ -7,12 +7,15 @@ import { getAllReservations } from '../apiCalls.js';
 class App extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      reservations: []
+    }
   }
 
   componentDidMount = async () => {
     await getAllReservations()
-    .then(data => console.log(data))
+    .then(data => this.setState({ reservations: data }))
+    .catch(error => alert(error.message))
   }
 
   render() {
