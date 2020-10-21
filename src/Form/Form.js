@@ -4,12 +4,54 @@ import './Form.css';
 class Form extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      name: '',
+      date: '',
+      time: '',
+      number: ''
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
   render() {
     return(
-      <h2>Form goes here</h2>
+      <form>
+        <input
+          type='text'
+          placeholder='Name'
+          name='name'
+          value={this.state.name}
+          onChange={this.handleChange}
+        />
+
+        <input
+        type='text'
+        placeholder='Date (mm/d)'
+        name='date'
+        value={this.state.date}
+        onChange={this.handleChange}
+        />
+
+        <input
+        type='text'
+        placeholder='Time'
+        name='time'
+        value={this.state.time}
+        onChange={this.handleChange}
+        />
+
+        <input
+        type='text'
+        placeholder='Number of guests'
+        name='number'
+        value={this.state.number}
+        onChange={this.handleChange}
+        />
+        <button type='button'>Submit</button>
+      </form>
     )
   }
 }
