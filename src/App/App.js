@@ -12,6 +12,10 @@ class App extends Component {
     }
   }
 
+  createReservation = (newReservation) => {
+    this.setState({ reservations: [...this.state.reservations, newReservation ]})
+  }
+
   componentDidMount = async () => {
     await getAllReservations()
     .then(data => this.setState({ reservations: data }))
@@ -31,7 +35,7 @@ class App extends Component {
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-          <Form />
+          <Form handleReservation={this.createReservation}/>
         </div>
         <div className='resy-container'>
           {this.displayReservations()}
