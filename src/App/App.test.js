@@ -31,4 +31,26 @@ describe('App', () => {
     expect(screen.getByText('Time: 5:00')).toBeInTheDocument();
     expect(screen.getByText('Number of guests: 10')).toBeInTheDocument();
   });
+
+  it('Should create a different reservation', () => {
+    render(<App />)
+
+    const nameInput = screen.getByPlaceholderText('Name');
+    const dateInput = screen.getByPlaceholderText('Date (mm/d)');
+    const timeInput = screen.getByPlaceholderText('Time');
+    const numberInput = screen.getByPlaceholderText('Number of guests');
+    const button = screen.getByText('Make Reservation');
+
+    fireEvent.change(nameInput, {target: {value: 'Guvis'}});
+    fireEvent.change(dateInput, {target: {value: '10/31'}});
+    fireEvent.change(timeInput, {target: {value: '4:00'}});
+    fireEvent.change(numberInput, {target: {value: '25'}});
+    fireEvent.click(button);
+
+    expect(screen.getByText('Name: Guvis')).toBeInTheDocument();
+    expect(screen.getByText('Date: 10/31')).toBeInTheDocument();
+    expect(screen.getByText('Time: 4:00')).toBeInTheDocument();
+    expect(screen.getByText('Number of guests: 25')).toBeInTheDocument();
+
+  })
 });
