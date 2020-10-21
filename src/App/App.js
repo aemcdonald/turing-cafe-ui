@@ -18,15 +18,23 @@ class App extends Component {
     .catch(error => alert(error.message))
   }
 
+  displayReservations = () => {
+    if (this.state.reservations.length > 0) {
+      return this.state.reservations.map(reservation => {
+        return <Card reservation={reservation} />
+      })
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
           <Form />
-          <Card />
         </div>
         <div className='resy-container'>
+          {this.displayReservations()}
 
         </div>
       </div>
